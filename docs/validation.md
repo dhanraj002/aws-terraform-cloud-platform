@@ -12,7 +12,7 @@ Initial local validation: 18 October 2026.
 | AWS provider lockfiles | Version 6.69.1; committed for both roots |
 | GitHub Actions references | Pinned to resolved official action commit SHAs |
 | Local Docker execution | Not run: Docker daemon unavailable |
-| GitHub CI container build and smoke test | See live CI run linked from README |
+| GitHub CI container build and smoke test | Passed: [initial CI run](https://github.com/dhanraj002/aws-terraform-cloud-platform/actions/runs/39134895176), 47 seconds |
 | Live AWS deployment / rollback drill | Not run |
 
 Local Python version was 3.14.7 and Terraform was 1.16.1. CI uses Python 3.13 and Terraform 1.16.1. Terraform tests use a mocked AWS provider; they do not establish real IAM authorization or network connectivity.

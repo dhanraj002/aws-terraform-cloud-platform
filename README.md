@@ -8,26 +8,7 @@ The workload is intentionally small: a Python release probe with separate livene
 
 ## Architecture
 
-```mermaid
-flowchart LR
-  User[HTTPS client] --> ALB[Application Load Balancer]
-  subgraph VPC[eu-central-1 / VPC]
-    ALB --> A[Fargate task / private subnet A]
-    ALB --> B[Fargate task / private subnet B]
-    A --> NAT[Single NAT gateway / lab tradeoff]
-    B --> NAT
-  end
-  GH[GitHub Actions / lab environment] -->|OIDC temporary credentials| IAM[Scoped deployment role]
-  IAM --> ECR[ECR / immutable tags and digests]
-  IAM --> ECS[ECS rolling deployment]
-  ECS --> A
-  ECS --> B
-  A --> CW[CloudWatch logs and alarms]
-  B --> CW
-  CW --> SNS[SNS email]
-  TF[Terraform / operator credentials] --> VPC
-  TF --> State[S3 encrypted versioned state / lockfile]
-```
+![AWS platform architecture](docs/architecture.svg)
 
 ## What is implemented
 
