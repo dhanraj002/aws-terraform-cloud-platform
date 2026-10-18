@@ -1,0 +1,13 @@
+.terraform/
+*.tfstate*
+*.tfplan
+*.tfvars
+!*.tfvars.example
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+coverage.xml
+backend.hcl
+*plan.json

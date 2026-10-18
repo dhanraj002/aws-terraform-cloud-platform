@@ -1,0 +1,4 @@
+**
+!app/
+!app/server.py
+!Dockerfile

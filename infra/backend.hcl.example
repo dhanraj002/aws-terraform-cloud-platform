@@ -1,0 +1,5 @@
+bucket = "REPLACE_WITH_BOOTSTRAP_STATE_BUCKET"
+key = "release-platform/lab.tfstate"
+region = "eu-central-1"
+encrypt = true
+use_lockfile = true
