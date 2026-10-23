@@ -18,3 +18,10 @@ Initial local validation: 18 October 2026.
 Local Python version was 3.14.7 and Terraform was 1.16.1. CI uses Python 3.13 and Terraform 1.16.1. Terraform tests use a mocked AWS provider; they do not establish real IAM authorization or network connectivity.
 
 No AWS resources were provisioned during this build. Certificate setup, live IAM authorization, networking, SNS delivery, budget attribution and recovery timings require a sandbox deployment. The runbook contains an unfilled evidence table for that first drill.
+
+
+## 23 October 2026 release safety update
+
+Added regression tests for an unstable baseline (zero writes), delayed candidate visibility, a disappearing candidate, a never-visible candidate and an explicitly failed deployment. These tests mock the AWS API; live AWS rollout behavior remains unverified.
+
+Local regression suite: **19 passed** on 23 October 2026.

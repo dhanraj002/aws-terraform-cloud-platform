@@ -14,6 +14,12 @@ Terraform owns the service configuration and the initial task definition. GitHub
 
 Changing task resources, environment variables, roles or logging in Terraform does not automatically roll the live service because of that ignore rule. Review the newly registered Terraform task revision, then explicitly update the ECS service to it in a maintenance release before using the image-only workflow again. Do not edit an ignored task definition and assume production changed.
 
+## Baseline and eventual consistency
+
+A release first requires a completed, stable deployment with at least one running task. If an operator is already changing the service, the script stops before registering or updating a task. This is a preflight check, not an atomic distributed lock: GitHub concurrency covers workflow runs, while operators must still coordinate external changes.
+
+After UpdateService, the script allows up to 60 seconds for the candidate to appear in DescribeServices. Once observed, disappearance is treated as failure. AWS CLI calls have a 60-second process timeout; workflow execution is also bounded.
+
 ## Rollback is not deployment success
 
 The circuit breaker can restore the last completed deployment. A simple services-stable waiter can therefore succeed even when the proposed release failed. The deployment script also checks the expected task ARN, rollout state, desired/running counts and remaining deployments. Its tests include a healthy service running the old revision.
